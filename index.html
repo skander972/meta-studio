@@ -206,7 +206,7 @@
 
           <!-- Export Action Buttons -->
           <div class="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
-            <button id="downloadBannerBtn" type="button" class="col-span-1 sm:col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-indigo-600/30 transition-all">
+            <button id="downloadBannerBtn" type="button" class="col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-indigo-600/30 transition-all">
               <i data-lucide="download" class="w-3.5 h-3.5"></i>
               <span>Download PNG</span>
             </button>
@@ -214,10 +214,13 @@
               <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               <span>Copy Image</span>
             </button>
-            <button id="useAsOgBtn" type="button" class="col-span-2 sm:col-span-1 bg-sky-50 dark:bg-sky-950/40 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+            <button id="useAsOgBtn" type="button" class="bg-sky-50 dark:bg-sky-950/40 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
               <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
               <span>Set as Active OG</span>
             </button>
+            <a id="tweetCardBtn" href="https://twitter.com/intent/tweet?text=I%20just%20designed%20a%20clean%201200x630%20social%20preview%20card%20with%20%23MetaStudio!%20Check%20it%20out%20for%20free%20%E2%9C%A8" target="_blank" rel="noopener noreferrer" class="col-span-2 sm:col-span-3 bg-slate-900 hover:bg-black text-white font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+              <span>𝕏 Share Card on Twitter (Get Organic Reach)</span>
+            </a>
           </div>
         </div>
 
@@ -367,6 +370,27 @@
           <div class="relative">
             <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs font-mono overflow-x-auto max-h-60 leading-relaxed"><code id="codeOutput"></code></pre>
           </div>
+        </div>
+
+        <!-- Monetization & Cloud Partner Spotlight (Affiliate & Sponsor Engine) -->
+        <div class="bg-gradient-to-r from-indigo-900/10 via-sky-900/10 to-indigo-900/10 dark:from-indigo-950/40 dark:via-sky-950/30 dark:to-indigo-950/40 rounded-2xl p-4 border border-indigo-200 dark:border-indigo-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              ☁
+            </div>
+            <div>
+              <div class="font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <span>Deploy Your New Site with $200 Free Credits</span>
+                <span class="px-1.5 py-0.5 text-[9px] font-bold rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 uppercase">Partner Deal</span>
+              </div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">
+                Host your Next.js, Astro, or static app with SSD edge performance & instant SSL.
+              </div>
+            </div>
+          </div>
+          <a href="https://www.digitalocean.com" target="_blank" rel="noopener noreferrer sponsored" class="whitespace-nowrap px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm shadow-indigo-600/30 transition-all flex items-center gap-1.5">
+            <span>Claim $200 Credit →</span>
+          </a>
         </div>
 
         <!-- SEO Health Checklist -->
