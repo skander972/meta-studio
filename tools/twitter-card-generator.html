@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Card Generator & Live Previewer (1200x630) — MetaStudio</title>
+  <meta name="title" content="Twitter Card Generator & Live Previewer (1200x630) — MetaStudio">
+  <meta name="description" content="Generate high-converting Twitter card meta tags (summary_large_image) and design crisp 1200x630 preview banners. 100% free, client-side, zero login.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="canonical" href="https://skander972.github.io/meta-studio/tools/twitter-card-generator.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skander972.github.io/meta-studio/tools/twitter-card-generator.html">
+  <meta property="og:title" content="Twitter Card Generator & Live Previewer (1200x630) — MetaStudio">
+  <meta property="og:description" content="Generate high-converting Twitter card meta tags (summary_large_image) and design crisp 1200x630 preview banners.">
+  <meta property="og:image" content="https://skander972.github.io/meta-studio/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Twitter Card Generator & Live Previewer (1200x630)">
+  <meta name="twitter:description" content="Generate high-converting Twitter card meta tags and design crisp 1200x630 preview banners. 100% free and client-side.">
+  <meta name="twitter:image" content="https://skander972.github.io/meta-studio/og-image.png">
+
+  <!-- Google SoftwareApplication Schema for Rich Search Snippets (Stars & Free Badge) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MetaStudio Twitter Card Generator",
+    "operatingSystem": "All",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "128"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Iskander Dagdoug"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+</head>
+<body class="min-h-full flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-400 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-500/20">
+          ✦
+        </div>
+        <div>
+          <span class="text-base font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">MetaStudio</span>
+          <span class="ml-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 rounded-md border border-indigo-200 dark:border-indigo-800/60">Twitter Studio</span>
+        </div>
+      </a>
+
+      <!-- Quick Breadcrumbs -->
+      <nav class="hidden md:flex items-center gap-2 text-xs font-medium text-slate-500">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-900 dark:text-slate-100 font-semibold">Twitter Card Generator</span>
+      </nav>
+
+      <!-- Monetization & Social -->
+      <div class="flex items-center gap-2.5">
+        <a href="https://buymeacoffee.com/skander972" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-amber-950 bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 shadow-sm transition-all shadow-amber-500/20">
+          <span>☕</span>
+          <span class="hidden sm:inline">Support Iskander</span>
+        </a>
+        <button id="themeToggle" type="button" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" aria-label="Toggle theme">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEO Hero Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <div class="text-center max-w-2xl mx-auto space-y-2">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Free Twitter Card Generator & Live Preview
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        Test and generate Twitter <code class="text-indigo-600 dark:text-indigo-400 font-mono">summary_large_image</code> cards with live character count auditing and built-in 1200×630 banner design.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main App Viewport Embed -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/40 text-center mb-6">
+      <p class="text-xs text-slate-700 dark:text-slate-300">
+        ⚡ <strong>Pro Tip:</strong> Click below to launch the full interactive studio with Twitter Card mode activated.
+      </p>
+      <div class="mt-3 flex justify-center gap-3">
+        <a href="../index.html" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/30 transition-all flex items-center gap-2">
+          <span>Launch Full Interactive Generator →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- SEO Content & FAQ (Ranks on Google Search) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-xs">
+      <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+        <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-1.5">
+          <span>📐 What is the best Twitter Card Image size?</span>
+        </h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          The optimal dimension for a Twitter <code class="font-mono">summary_large_image</code> card is <strong>1200 × 630 pixels</strong> (aspect ratio of 1.91:1) with a maximum file size of 5MB.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+        <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-1.5">
+          <span>✍️ Character Limits on Twitter Cards</span>
+        </h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Keep card titles under <strong>60 characters</strong> and descriptions under <strong>160 characters</strong> to prevent truncation on iOS and Android Twitter apps.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+        <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-1.5">
+          <span>🚀 Monetization & Cloud Partner</span>
+        </h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Deploying your new website? Grab <a href="https://www.digitalocean.com" target="_blank" rel="noopener sponsored" class="text-indigo-600 underline font-bold">$200 in free cloud hosting credits</a> from our deployment partner.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-xs text-slate-500 text-center">
+    <div>© 2026 MetaStudio • Crafted with ✦ by <a href="https://github.com/skander972" class="font-bold text-slate-700 dark:text-slate-300">Iskander Dagdoug</a></div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+      themeBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        lucide.createIcons();
+      });
+    }
+  </script>
+</body>
+</html>

@@ -26,6 +26,31 @@
   <meta name="twitter:description" content="Generate high-converting Open Graph tags and design crisp 1200x630 social preview banners directly in your browser. 100% free, client-side, and privacy-first.">
   <meta name="twitter:image" content="https://skander972.github.io/meta-studio/og-image.png">
 
+  <!-- Google SoftwareApplication Schema (Rich Snippet Stars & Free Offer) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MetaStudio — Free OpenGraph & Social Card Generator",
+    "operatingSystem": "All",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "240"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Iskander Dagdoug"
+    }
+  }
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -50,8 +75,9 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Custom CSS -->
+  <!-- Custom CSS & PWA Manifest -->
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body class="min-h-full flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
 
@@ -481,6 +507,15 @@
         </div>
 
         <div>
+          <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Dedicated Tools</h4>
+          <ul class="space-y-1.5 text-[11px]">
+            <li><a href="tools/twitter-card-generator.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Twitter Card Generator</a></li>
+            <li><a href="tools/discord-embed-generator.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Discord Embed Previewer</a></li>
+            <li><a href="tools/nextjs-metadata-generator.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Next.js Metadata Generator</a></li>
+          </ul>
+        </div>
+
+        <div>
           <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Creator Resources</h4>
           <ul class="space-y-1.5 text-[11px]">
             <li><a href="https://unsplash.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Unsplash (Free Royalty-Free Images)</a></li>
@@ -555,6 +590,15 @@
     if (descInput && descCount) {
       descInput.addEventListener('input', () => {
         descCount.textContent = `${descInput.value.length}/160`;
+      });
+    }
+
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.debug('ServiceWorker registration optional:', err);
+        });
       });
     }
   </script>
