@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetaStudio — Free OpenGraph & Social Card Meta Generator</title>
+  <meta name="title" content="MetaStudio — Free OpenGraph & Social Card Meta Generator">
+  <meta name="description" content="Generate high-converting Open Graph tags and design crisp 1200x630 social preview banners directly in your browser. 100% free, client-side, and privacy-first.">
+  <meta name="theme-color" content="#4f46e5">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="min-h-full flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-400 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-500/20">
+          ✦
+        </div>
+        <div>
+          <span class="text-base font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">MetaStudio</span>
+          <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 rounded-md border border-indigo-200 dark:border-indigo-800/60">Free & Client-Side</span>
+        </div>
+      </div>
+
+      <!-- Quick Template Loaders -->
+      <div class="hidden md:flex items-center gap-1 text-xs bg-slate-100 dark:bg-slate-800/60 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+        <span class="text-slate-400 dark:text-slate-500 px-2 font-medium">Templates:</span>
+        <button id="demoSaas" type="button" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all font-medium">SaaS</button>
+        <button id="demoBlog" type="button" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all font-medium">Blog</button>
+        <button id="demoOpenSource" type="button" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all font-medium">Open Source</button>
+      </div>
+
+      <!-- Action & Monetization Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button id="shareLinkBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+          <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+          <span>Share</span>
+        </button>
+
+        <!-- Buy Me a Coffee Micro-Income Button -->
+        <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-amber-950 bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 shadow-sm transition-all shadow-amber-500/20">
+          <span>☕</span>
+          <span class="hidden sm:inline">Support Free Tool</span>
+        </a>
+
+        <!-- Dark/Light Mode Switcher -->
+        <button id="themeToggle" type="button" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" aria-label="Toggle theme">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left Column: Controls & Meta Input (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Card 1: Core SEO Metadata -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <h2 class="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-slate-100">
+              <i data-lucide="tags" class="w-4 h-4 text-indigo-500"></i>
+              <span>Page Metadata</span>
+            </h2>
+            <span class="text-[11px] text-slate-400 font-medium">Auto-synced</span>
+          </div>
+
+          <!-- Page Title -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center text-xs">
+              <label for="title" class="font-semibold text-slate-700 dark:text-slate-300">Page Title</label>
+              <span id="titleCounter" class="text-[11px] text-slate-400">0/60</span>
+            </div>
+            <input type="text" id="title" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g. Acme — The Fast Modern Database">
+          </div>
+
+          <!-- Description -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center text-xs">
+              <label for="description" class="font-semibold text-slate-700 dark:text-slate-300">Description</label>
+              <span id="descCounter" class="text-[11px] text-slate-400">0/160</span>
+            </div>
+            <textarea id="description" rows="3" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Brief summary of your page..."></textarea>
+          </div>
+
+          <!-- Canonical URL & Site Name -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label for="canonicalUrl" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Canonical URL</label>
+              <input type="url" id="canonicalUrl" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="https://example.com">
+            </div>
+            <div class="space-y-1">
+              <label for="siteName" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Site Name</label>
+              <input type="text" id="siteName" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g. Acme Corp">
+            </div>
+          </div>
+
+          <!-- Author & Twitter Handle -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label for="author" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Author / Creator</label>
+              <input type="text" id="author" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Jane Doe">
+            </div>
+            <div class="space-y-1">
+              <label for="twitterHandle" class="text-xs font-semibold text-slate-700 dark:text-slate-300">X / Twitter Handle</label>
+              <input type="text" id="twitterHandle" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="@username">
+            </div>
+          </div>
+
+          <!-- Extra Settings: OG Type, Twitter Card, Theme Color -->
+          <div class="grid grid-cols-3 gap-2 pt-2 text-xs">
+            <div>
+              <label for="ogType" class="text-[11px] font-medium text-slate-500">OG Type</label>
+              <select id="ogType" class="w-full mt-1 text-xs px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+                <option value="website">website</option>
+                <option value="article">article</option>
+                <option value="product">product</option>
+              </select>
+            </div>
+            <div>
+              <label for="twitterCard" class="text-[11px] font-medium text-slate-500">Card Mode</label>
+              <select id="twitterCard" class="w-full mt-1 text-xs px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+                <option value="summary_large_image">large image</option>
+                <option value="summary">summary</option>
+              </select>
+            </div>
+            <div>
+              <label for="themeColor" class="text-[11px] font-medium text-slate-500">Theme Color</label>
+              <div class="flex items-center gap-1.5 mt-1">
+                <input type="color" id="themeColor" value="#4f46e5" class="w-7 h-7 rounded border-0 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: 1200x630 Social Banner Graphic Designer -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <h2 class="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-slate-100">
+              <i data-lucide="palette" class="w-4 h-4 text-sky-500"></i>
+              <span>Social Banner Generator</span>
+            </h2>
+            <span class="text-[11px] text-sky-600 dark:text-sky-400 font-semibold">1200 × 630 px</span>
+          </div>
+
+          <!-- Presets Grid -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-700 dark:text-slate-300">Design Presets</label>
+            <div id="presetList" class="grid grid-cols-2 gap-2"></div>
+          </div>
+
+          <!-- Badge & Logo Upload -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label for="cardBadge" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Banner Badge</label>
+              <input type="text" id="cardBadge" class="w-full text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="NEW FEATURE">
+            </div>
+            <div class="space-y-1">
+              <label for="logoUpload" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Custom Logo/Avatar</label>
+              <input type="file" id="logoUpload" accept="image/*" class="w-full text-[11px] file:mr-2 file:py-1.5 file:px-2.5 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-indigo-950 dark:file:text-indigo-300 border border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 bg-slate-50 dark:bg-slate-800/50">
+            </div>
+          </div>
+
+          <!-- Viral Growth Watermark Toggle -->
+          <div class="flex items-center justify-between pt-1 text-xs">
+            <label for="showWatermark" class="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-300">
+              <input type="checkbox" id="showWatermark" class="rounded text-indigo-600 focus:ring-indigo-500">
+              <span>Include subtle attribution watermark</span>
+            </label>
+            <span class="text-[10px] text-slate-400">Helps support this tool</span>
+          </div>
+
+          <!-- Export Action Buttons -->
+          <div class="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button id="downloadBannerBtn" type="button" class="col-span-1 sm:col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-indigo-600/30 transition-all">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Download PNG</span>
+            </button>
+            <button id="copyImageBtn" type="button" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all border border-slate-200 dark:border-slate-700">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Image</span>
+            </button>
+            <button id="useAsOgBtn" type="button" class="col-span-2 sm:col-span-1 bg-sky-50 dark:bg-sky-950/40 hover:bg-sky-100 dark:hover:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+              <span>Set as Active OG</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Visual Previews, Canvas & Code Generator (7 Cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Top Navigation Tabs for Workspace -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-2 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
+          
+          <!-- Social Platform Previews Tabs -->
+          <div class="flex items-center gap-1 text-xs border-b border-transparent">
+            <button data-preview-tab="twitter" type="button" class="px-3 py-1.5 rounded-lg font-semibold border-b-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+              <span>𝕏 / Twitter</span>
+            </button>
+            <button data-preview-tab="facebook" type="button" class="px-3 py-1.5 rounded-lg font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1.5">
+              <span>OpenGraph / LinkedIn</span>
+            </button>
+            <button data-preview-tab="discord" type="button" class="px-3 py-1.5 rounded-lg font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1.5">
+              <span>Discord</span>
+            </button>
+            <button data-preview-tab="serp" type="button" class="px-3 py-1.5 rounded-lg font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1.5">
+              <span>Google SERP</span>
+            </button>
+          </div>
+
+          <!-- SEO Score Pill -->
+          <div class="flex items-center gap-2 pr-2">
+            <span class="text-xs text-slate-400 font-medium">SEO Health:</span>
+            <div id="auditScore" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800">100%</div>
+          </div>
+        </div>
+
+        <!-- Live Preview Panels Container -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+          
+          <!-- 1. Twitter / X Card Preview -->
+          <div id="preview-twitter" class="preview-panel">
+            <div class="max-w-md mx-auto bg-black text-white rounded-2xl overflow-hidden border border-slate-800 shadow-lg">
+              <div class="p-3 flex items-center gap-2.5 border-b border-slate-800/60">
+                <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-xs">𝕏</div>
+                <div>
+                  <div class="text-xs font-bold">MetaStudio Creator</div>
+                  <div id="twPreviewHandle" class="text-[11px] text-slate-400">@devscale</div>
+                </div>
+              </div>
+              <div class="relative w-full aspect-[1200/630] bg-slate-900 overflow-hidden">
+                <img id="twPreviewImage" class="w-full h-full object-cover" src="" alt="Social Card Preview">
+              </div>
+              <div class="p-3 space-y-1 bg-black">
+                <div id="twPreviewDomain" class="text-[11px] text-slate-400 uppercase tracking-wider font-medium">devscale.io</div>
+                <div id="twPreviewTitle" class="text-sm font-bold line-clamp-1">DevScale — The Zero-Config Cloud Platform</div>
+                <div id="twPreviewDesc" class="text-xs text-slate-400 line-clamp-2">Deploy web applications with zero devops overhead.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Facebook / OpenGraph Preview -->
+          <div id="preview-facebook" class="preview-panel hidden">
+            <div class="max-w-md mx-auto bg-white dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 shadow-md">
+              <div class="relative w-full aspect-[1200/630] bg-slate-100 dark:bg-slate-900 overflow-hidden">
+                <img id="fbPreviewImage" class="w-full h-full object-cover" src="" alt="Social Card Preview">
+              </div>
+              <div class="p-3 space-y-1 bg-slate-50 dark:bg-slate-850 border-t border-slate-200 dark:border-slate-700">
+                <div id="fbPreviewDomain" class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">DEVSCALE.IO</div>
+                <div id="fbPreviewTitle" class="text-sm font-bold text-slate-900 dark:text-slate-100 line-clamp-1">DevScale Cloud Platform</div>
+                <div id="fbPreviewDesc" class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Deploy web applications with instant rollbacks.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Discord Embed Preview -->
+          <div id="preview-discord" class="preview-panel hidden">
+            <div class="max-w-md mx-auto bg-[#2b2d31] text-[#dbdee1] p-4 rounded-lg shadow-md font-sans">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-7 h-7 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold text-white">Bot</div>
+                <span class="text-xs font-semibold text-white">Link Preview Bot</span>
+                <span class="text-[10px] bg-[#5865f2] text-white px-1.5 py-0.2 rounded font-bold">BOT</span>
+              </div>
+              <div class="border-l-4 border-[#5865f2] pl-3 py-1 space-y-2 bg-[#232428] rounded-r-lg p-2.5">
+                <div id="dcPreviewSite" class="text-[11px] text-[#949ba4] font-medium">DevScale Cloud</div>
+                <div id="dcPreviewTitle" class="text-sm font-bold text-[#00a8fc] hover:underline cursor-pointer">DevScale — The Zero-Config Cloud Platform</div>
+                <div id="dcPreviewDesc" class="text-xs text-[#dbdee1] line-clamp-3">Deploy web applications with zero devops overhead.</div>
+                <div class="mt-2 rounded-md overflow-hidden aspect-[1200/630] max-h-48">
+                  <img id="dcPreviewImage" class="w-full h-full object-cover" src="" alt="Discord Preview">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Google SERP Snippet Preview -->
+          <div id="preview-serp" class="preview-panel hidden">
+            <div class="max-w-lg mx-auto bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1 font-sans">
+              <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px]">🌐</div>
+                <div class="flex flex-col leading-none">
+                  <span id="serpPreviewSite" class="text-[12px] text-slate-800 dark:text-slate-200 font-medium">DevScale Cloud</span>
+                  <span id="serpPreviewUrl" class="text-[10px] text-slate-500 truncate">https://devscale.io</span>
+                </div>
+              </div>
+              <div id="serpPreviewTitle" class="text-base font-medium text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer pt-1 line-clamp-1">
+                DevScale — The Zero-Config Cloud Platform for Teams
+              </div>
+              <div id="serpPreviewDesc" class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                Deploy web applications, microservices, and static sites with instantaneous rollbacks, continuous previews, and zero devops overhead.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Canvas Viewport (1200x630 Display) -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              <span>High-Resolution Canvas (1200 × 630 Native Output)</span>
+            </h3>
+            <span class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">Ready for Retina & Social Crawlers</span>
+          </div>
+          
+          <div class="w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 canvas-checkerboard shadow-inner flex items-center justify-center p-2">
+            <canvas id="ogCanvas" class="w-full h-auto rounded-lg shadow-md max-w-full aspect-[1200/630]"></canvas>
+          </div>
+        </div>
+
+        <!-- Code Export & Snippet Generator -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-1.5 overflow-x-auto text-xs">
+              <button data-code-tab="html" class="px-2.5 py-1 rounded-lg font-semibold bg-indigo-600 text-white shadow">HTML</button>
+              <button data-code-tab="nextjs" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">Next.js</button>
+              <button data-code-tab="astro" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">Astro</button>
+              <button data-code-tab="nuxt" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">Nuxt 3</button>
+              <button data-code-tab="sveltekit" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">SvelteKit</button>
+              <button data-code-tab="jsonld" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">JSON-LD</button>
+            </div>
+            
+            <button id="copyCodeBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold rounded-lg transition-all text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Code</span>
+            </button>
+          </div>
+
+          <!-- Code View Area -->
+          <div class="relative">
+            <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs font-mono overflow-x-auto max-h-60 leading-relaxed"><code id="codeOutput"></code></pre>
+          </div>
+        </div>
+
+        <!-- SEO Health Checklist -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+              <span>SEO Audit & Optimization Checklist</span>
+            </h3>
+            <span class="text-[11px] text-slate-400">Google & OpenGraph Best Practices</span>
+          </div>
+
+          <div id="auditList" class="space-y-2"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Ethical Affiliate & Free Developer Resources Footer (Micro-income & organic link building) -->
+  <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2 font-bold text-slate-800 dark:text-slate-200">
+            <span>✦ MetaStudio</span>
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
+            100% free, client-side OpenGraph generator and social media image designer. Built to be zero-cost, high-speed, and privacy-respecting.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Free Hosting Partners</h4>
+          <ul class="space-y-1.5 text-[11px]">
+            <li><a href="https://pages.github.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub Pages (Free Static Hosting)</a></li>
+            <li><a href="https://pages.cloudflare.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Cloudflare Pages (Unlimited Bandwidth)</a></li>
+            <li><a href="https://vercel.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Vercel (Zero-Config Deployments)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Creator Resources</h4>
+          <ul class="space-y-1.5 text-[11px]">
+            <li><a href="https://unsplash.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Unsplash (Free Royalty-Free Images)</a></li>
+            <li><a href="https://tinypng.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">TinyPNG (Fast Asset Compression)</a></li>
+            <li><a href="https://ogp.me" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">The Open Graph Protocol Spec</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Support & Open Source</h4>
+          <p class="text-[11px] text-slate-500 mb-3 leading-relaxed">
+            MetaStudio is open source under the MIT license. Deploy your own instance in seconds.
+          </p>
+          <a href="https://buymeacoffee.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 font-semibold border border-amber-300 dark:border-amber-800 text-[11px] hover:bg-amber-200 transition-all">
+            <span>☕ Buy the creator a coffee</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] gap-2">
+        <div>© 2026 MetaStudio. Zero Tracking. 100% Client-Side.</div>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400">GitHub Repository</a>
+          <span>•</span>
+          <a href="#title" class="hover:text-indigo-600 dark:hover:text-indigo-400">Back to Top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/app.js"></script>
+
+  <!-- Lucide Icon Initializer & Theme Toggle Script -->
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Dark/Light Mode logic
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      // Check stored preference or system default
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      themeBtn.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.theme = 'light';
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.theme = 'dark';
+        }
+        lucide.createIcons();
+      });
+    }
+
+    // Live character count indicators
+    const titleInput = document.getElementById('title');
+    const titleCount = document.getElementById('titleCounter');
+    if (titleInput && titleCount) {
+      titleInput.addEventListener('input', () => {
+        titleCount.textContent = `${titleInput.value.length}/60`;
+      });
+    }
+
+    const descInput = document.getElementById('description');
+    const descCount = document.getElementById('descCounter');
+    if (descInput && descCount) {
+      descInput.addEventListener('input', () => {
+        descCount.textContent = `${descInput.value.length}/160`;
+      });
+    }
+  </script>
+</body>
+</html>
