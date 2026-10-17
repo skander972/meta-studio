@@ -21,6 +21,7 @@
   - Nuxt 3 `useSeoMeta()`
   - SvelteKit `<svelte:head>`
   - Google JSON-LD Structured Data Schema (`WebSite`, `Article`)
+- **🔍 Live URL Inspector & Scraper**: Paste any public website URL to scrape its live Open Graph tags, test its social preview images, and audit SEO issues in real-time.
 - **🔗 Shareable Project State**: Instant URL hash-state encoding (`#...`) so you can share exact card configurations with teammates with zero database or backend requirements.
 - **⚡ 100% Client-Side & Zero-Cost**: Runs entirely in the browser. Zero server costs, zero API keys, and 100/100 Lighthouse performance.
 

@@ -107,6 +107,35 @@
       <!-- Left Column: Controls & Meta Input (5 Cols) -->
       <div class="lg:col-span-5 space-y-6">
 
+        <!-- Card 0: Live URL Inspector (Scraper & Auditor) -->
+        <div class="bg-gradient-to-r from-indigo-500/10 via-sky-500/10 to-indigo-500/10 dark:from-indigo-950/40 dark:via-sky-950/30 dark:to-indigo-950/40 rounded-2xl p-4 shadow-sm border border-indigo-200/80 dark:border-indigo-800/60 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-bold flex items-center gap-1.5 text-indigo-950 dark:text-indigo-200">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"></i>
+              <span>Inspect Any Live Website</span>
+            </h2>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300">Live Scraper</span>
+          </div>
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+            Enter any public website URL to scrape its live Open Graph tags, social banners, and audit SEO issues in real-time.
+          </p>
+          <div class="flex gap-2">
+            <input type="url" id="inspectUrlInput" placeholder="https://stripe.com or github.com" class="flex-1 text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="inspectUrlBtn" type="button" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm shadow-indigo-600/30 transition-all shrink-0">
+              <i data-lucide="search" class="w-3.5 h-3.5"></i>
+              <span id="inspectBtnText">Inspect</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-1.5 text-[11px] text-slate-500">
+            <span>Quick test:</span>
+            <button type="button" class="quick-inspect-chip underline hover:text-indigo-600 dark:hover:text-indigo-400" data-url="https://github.com">github.com</button>
+            <span>•</span>
+            <button type="button" class="quick-inspect-chip underline hover:text-indigo-600 dark:hover:text-indigo-400" data-url="https://stripe.com">stripe.com</button>
+            <span>•</span>
+            <button type="button" class="quick-inspect-chip underline hover:text-indigo-600 dark:hover:text-indigo-400" data-url="https://vercel.com">vercel.com</button>
+          </div>
+        </div>
+
         <!-- Card 1: Core SEO Metadata -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">

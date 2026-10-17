@@ -236,6 +236,32 @@ class MetaStudioApp {
     if (demoOpenSourceBtn) {
       demoOpenSourceBtn.addEventListener('click', () => this.loadDemoPreset('opensource'));
     }
+
+    // Live URL Inspector
+    const inspectBtn = document.getElementById('inspectUrlBtn');
+    const inspectInput = document.getElementById('inspectUrlInput');
+    if (inspectBtn && inspectInput) {
+      inspectBtn.addEventListener('click', () => {
+        const val = inspectInput.value.trim();
+        if (val) this.inspectUrl(val);
+      });
+      inspectInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const val = inspectInput.value.trim();
+          if (val) this.inspectUrl(val);
+        }
+      });
+    }
+
+    // Quick inspect chip buttons
+    document.querySelectorAll('.quick-inspect-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.getAttribute('data-url');
+        if (inspectInput) inspectInput.value = url;
+        this.inspectUrl(url);
+      });
+    });
   }
 
   bindTabs() {
@@ -572,6 +598,114 @@ class MetaStudioApp {
       return parsed.hostname;
     } catch {
       return url.replace(/^https?:\/\//, '').split('/')[0];
+    }
+  }
+
+  async inspectUrl(targetUrl) {
+    if (!targetUrl) return;
+    if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+      targetUrl = 'https://' + targetUrl;
+    }
+
+    const btn = document.getElementById('inspectUrlBtn');
+    const btnText = document.getElementById('inspectBtnText');
+    const originalText = btnText ? btnText.textContent : 'Inspect';
+    if (btn) btn.disabled = true;
+    if (btnText) btnText.textContent = 'Fetching...';
+
+    try {
+      let html = '';
+      // Fetch via public zero-cost CORS proxy
+      try {
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+        const resp = await fetch(proxyUrl);
+        if (resp.ok) {
+          const data = await resp.json();
+          html = data.contents;
+        }
+      } catch (e) {
+        console.warn('AllOrigins proxy failed, trying fallback...', e);
+      }
+
+      if (!html) {
+        // Fallback proxy
+        const fallbackResp = await fetch(`https://corsproxy.io/?${encodeURIComponent(targetUrl)}`);
+        if (fallbackResp.ok) {
+          html = await fallbackResp.text();
+        }
+      }
+
+      if (!html) throw new Error('Could not fetch HTML from target site');
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      const getMeta = (prop, name) => {
+        if (prop) {
+          const el = doc.querySelector(`meta[property="${prop}"]`) || doc.querySelector(`meta[name="${prop}"]`);
+          if (el && el.content) return el.content;
+        }
+        if (name) {
+          const el = doc.querySelector(`meta[name="${name}"]`) || doc.querySelector(`meta[property="${name}"]`);
+          if (el && el.content) return el.content;
+        }
+        return '';
+      };
+
+      const title = getMeta('og:title', 'title') || doc.querySelector('title')?.innerText || '';
+      const description = getMeta('og:description', 'description') || '';
+      const siteName = getMeta('og:site_name', 'application-name') || '';
+      const author = getMeta('author') || '';
+      const twitterHandle = getMeta('twitter:site', 'twitter:creator') || '';
+      const twitterCard = getMeta('twitter:card') || 'summary_large_image';
+      const ogType = getMeta('og:type') || 'website';
+      const themeColor = getMeta('theme-color') || '#4f46e5';
+      const keywords = getMeta('keywords') || '';
+
+      // Extract and resolve image URL
+      let imageUrl = getMeta('og:image', 'twitter:image') || '';
+      if (imageUrl && !imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')) {
+        try {
+          imageUrl = new URL(imageUrl, targetUrl).href;
+        } catch {}
+      }
+
+      // Canonical URL
+      const canonical = doc.querySelector('link[rel="canonical"]')?.href || targetUrl;
+
+      // Update state
+      this.state = {
+        ...this.state,
+        title: title.trim() || this.state.title,
+        description: description.trim() || this.state.description,
+        canonicalUrl: canonical,
+        siteName: siteName.trim() || this.extractHostname(targetUrl),
+        author: author.trim() || this.state.author,
+        twitterHandle: twitterHandle.trim() || this.state.twitterHandle,
+        twitterCard: twitterCard === 'summary' ? 'summary' : 'summary_large_image',
+        ogType: ogType || 'website',
+        imageUrl: imageUrl,
+        themeColor: themeColor || '#4f46e5',
+        keywords: keywords || this.state.keywords
+      };
+
+      // Sync form input fields
+      Object.keys(this.state).forEach(key => {
+        const el = document.getElementById(key);
+        if (el) el.value = this.state[key];
+      });
+
+      this.syncDesignerWithState();
+      this.updateAllPreviews();
+      this.updateCodeExport();
+      this.runAudit();
+      this.showToast(`Extracted Open Graph tags from ${this.extractHostname(targetUrl)}!`);
+    } catch (err) {
+      console.error('Inspection error:', err);
+      this.showToast('Could not inspect URL. Check that site is public.');
+    } finally {
+      if (btn) btn.disabled = false;
+      if (btnText) btnText.textContent = originalText;
     }
   }
 
