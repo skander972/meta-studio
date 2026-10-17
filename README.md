@@ -77,6 +77,14 @@ Then visit `http://localhost:8000`.
 
 ---
 
+## 👨‍💻 Creator & Maintainer
+
+Built with ✦ by **Iskander Dagdoug** ([@skander972](https://github.com/skander972))  
+- ☕ [Support on Buy Me a Coffee](https://buymeacoffee.com/skander972)
+- 🐙 [GitHub Profile](https://github.com/skander972)
+
+---
+
 ## 📄 License
 
 MIT License — Free to use, fork, and monetize.
