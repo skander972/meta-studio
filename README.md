@@ -37,11 +37,11 @@
    git add .
    git commit -m "Initial commit of MetaStudio"
    git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/meta-studio.git
+   git remote add origin https://github.com/skander972/meta-studio.git
    git push -u origin main
    ```
 3. In GitHub, go to **Settings** → **Pages** → under **Build and deployment**, select **GitHub Actions** (the included workflow in `.github/workflows/deploy.yml` will automatically deploy your site).
-4. Your site is live at `https://YOUR_USERNAME.github.io/meta-studio/`!
+4. Your site is live at `https://skander972.github.io/meta-studio/`!
 
 ### Option 2: Cloudflare Pages / Vercel / Netlify
 

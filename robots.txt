@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourusername.github.io/meta-studio/sitemap.xml
+Sitemap: https://skander972.github.io/meta-studio/sitemap.xml
